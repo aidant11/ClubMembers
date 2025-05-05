@@ -1,27 +1,36 @@
 import java.util.ArrayList;
+
 public class ClubMembers {
-    private ArrayList<MemberInfo> memberList;
-    public Clubmemebers()
-    {
-        memberList= new ArrayList<MemberInfo>();
-    }
-    
-    public void addMembers(String[] names, int gradYear) 
-    {
-        for (String s : names) memberList.add(new MemberInfo(s, gradYear, true));
+    private ArrayList<MemberInfo> members;
+
+    public ClubMembers(ArrayList<MemberInfo> initialList) {
+        members = initialList;
     }
 
-    public ArrayList<MemberInfo> getMemberList()
-    {
-        return memberList;
+    public void addNewMembers(String[] newNames, int year) {
+        for (String fullName : newNames) {
+            members.add(new MemberInfo(fullName, year, true));
+        }
     }
-    /**
-     * Removes members who have graduated and returns a list of members who have
-     * graduated
-     * and are in good standing, as described in part (b).
-     */
-    //public ArrayList<MemberInfo> removeMembers(int year) {
-        /* to be implemented in part (b) */ }
-    // There may be instance variables, constructors, and methods that are not
-    // shown.
+
+    public ArrayList<MemberInfo> removeGraduatedMembers(int targetYear) {
+        ArrayList<MemberInfo> graduatedGoodStanding = new ArrayList<>();
+
+        for (int idx = 0; idx < members.size(); idx++) {
+            MemberInfo current = members.get(idx);
+            if (current.getGraduationYear() <= targetYear) {
+                if (current.hasGoodStanding()) {
+                    graduatedGoodStanding.add(current);
+                }
+                members.remove(idx);
+                idx--; // adjust index after removal
+            }
+        }
+
+        return graduatedGoodStanding;
+    }
+
+    public ArrayList<MemberInfo> getMemberList() {
+        return members;
+    }
 }

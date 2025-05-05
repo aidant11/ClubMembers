@@ -1,25 +1,25 @@
-import javax.xml.transform.stax.StAXResult;
-
 public class MemberInfo {
-    private String name;
-    private int gradYear;
-    private boolean hasGoodStanding;
+    private int graduationYear;
+    private boolean isInGoodStanding;
+    private String memberName;
 
-    public MemberInfo(String name, int gradYear, boolean hasGoodStanding) 
-    {
-        this.name = name;
-        this.gradYear = gradYear;
-        this.hasGoodStanding = hasGoodStanding;
+    public MemberInfo(String name, int year, boolean goodStatus) {
+        memberName = name;
+        graduationYear = year;
+        isInGoodStanding = goodStatus;
     }
 
-    /** Returns the graduation year of the club member. */
-    public int getGradYear() {
-        /* implementation not shown */ }
+    public int getGraduationYear() {
+        return graduationYear;
+    }
 
+    public boolean hasGoodStanding() {
+        return isInGoodStanding;
+    }
 
-    /** Returns true if the member is in good standing and false otherwise. */
-    public boolean inGoodStanding() {
-        /* implementation not shown */ }
-    // There may be instance variables, constructors, and methods that are not
-    // shown.
+    public String toString() {
+        return "\nName: " + memberName + "\n" +
+               "Year: " + graduationYear + "\n" +
+               "Good Standing: " + isInGoodStanding + "\n";
+    }
 }
